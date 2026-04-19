@@ -136,9 +136,14 @@ NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
 # Supabase
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+
+# Data mode
+# supabase (default) | localstorage
+NEXT_PUBLIC_DATA_MODE=supabase
 ```
 
-Replace the placeholder values with your actual ImageKit, NeonDB, Upstash, and Resend credentials. You can obtain these credentials by signing up on: [Supabase](https://supabase.com/dashboard), [Clerk](https://jsm.dev/converso-clerk), [Sentry](https://jsm.dev/converso-sentry), [Vapi](https://jsm.dev/converso-vapi).
+Replace the placeholder values with your actual credentials. If you want to keep using Clerk-based Supabase auth, create a Clerk JWT template named `supabase` and keep `NEXT_PUBLIC_SUPABASE_ANON_KEY` set. If you prefer server-side access for actions, set `SUPABASE_SERVICE_ROLE_KEY` instead. You can obtain these credentials by signing up on: [Supabase](https://supabase.com/dashboard), [Clerk](https://jsm.dev/converso-clerk), [Sentry](https://jsm.dev/converso-sentry), [Vapi](https://jsm.dev/converso-vapi).
 
 **Running the Project**
 

@@ -11,6 +11,21 @@ export const getSubjectColor = (subject: string) => {
   return subjectsColors[subject as keyof typeof subjectsColors];
 };
 
+const subjectBgClasses = {
+  science: "bg-[#E5D0FF]",
+  maths: "bg-[#FFDA6E]",
+  language: "bg-[#BDE7FF]",
+  coding: "bg-[#FFC8E4]",
+  history: "bg-[#FFECC8]",
+  economics: "bg-[#C8FFDF]",
+};
+
+export const getSubjectBgClass = (subject: string) => {
+  return (
+    subjectBgClasses[subject as keyof typeof subjectBgClasses] ?? "bg-card"
+  );
+};
+
 export const configureAssistant = (voice: string, style: string) => {
   const voiceId = voices[voice as keyof typeof voices][
           style as keyof (typeof voices)[keyof typeof voices]

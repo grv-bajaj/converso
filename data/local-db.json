@@ -1,0 +1,164 @@
+{
+  "companions": [
+    {
+      "id": "5c166674-b648-43e5-ae71-9f091c6b1651",
+      "name": "Ansh",
+      "subject": "coding",
+      "topic": "NV Tabular",
+      "duration": 15,
+      "voice": "female",
+      "style": "casual",
+      "author": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "bookmarked": false,
+      "created_at": "2026-04-19T11:19:56.483Z"
+    },
+    {
+      "id": "seed-science-1",
+      "name": "Neura the Brainy Explorer",
+      "subject": "science",
+      "topic": "Neural Network of the Brain",
+      "duration": 45,
+      "voice": "female",
+      "style": "formal",
+      "author": "seed-user",
+      "bookmarked": false,
+      "created_at": "2026-04-01T10:00:00.000Z"
+    },
+    {
+      "id": "seed-maths-1",
+      "name": "Countsy the Number Wizard",
+      "subject": "maths",
+      "topic": "Derivatives & Integrals",
+      "duration": 30,
+      "voice": "male",
+      "style": "casual",
+      "author": "seed-user",
+      "bookmarked": false,
+      "created_at": "2026-04-01T11:00:00.000Z"
+    },
+    {
+      "id": "seed-language-1",
+      "name": "Verba the Vocabulary Builder",
+      "subject": "language",
+      "topic": "English Literature",
+      "duration": 30,
+      "voice": "female",
+      "style": "formal",
+      "author": "seed-user",
+      "bookmarked": false,
+      "created_at": "2026-04-01T12:00:00.000Z"
+    },
+    {
+      "id": "seed-coding-1",
+      "name": "Codey the Logic Hacker",
+      "subject": "coding",
+      "topic": "Intro to If-Else Statements",
+      "duration": 45,
+      "voice": "male",
+      "style": "casual",
+      "author": "seed-user",
+      "bookmarked": false,
+      "created_at": "2026-04-01T13:00:00.000Z"
+    },
+    {
+      "id": "seed-history-1",
+      "name": "Memo the Memory Keeper",
+      "subject": "history",
+      "topic": "World Wars: Causes & Consequences",
+      "duration": 15,
+      "voice": "female",
+      "style": "formal",
+      "author": "seed-user",
+      "bookmarked": false,
+      "created_at": "2026-04-01T14:00:00.000Z"
+    },
+    {
+      "id": "seed-economics-1",
+      "name": "The Market Maestro",
+      "subject": "economics",
+      "topic": "The Basics of Supply & Demand",
+      "duration": 10,
+      "voice": "male",
+      "style": "casual",
+      "author": "seed-user",
+      "bookmarked": false,
+      "created_at": "2026-04-01T15:00:00.000Z"
+    }
+  ],
+  "session_history": [
+    {
+      "id": "3d34d799-465c-4793-9d1f-ff5725b7ca48",
+      "companion_id": "seed-coding-1",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-19T11:49:13.559Z"
+    },
+    {
+      "id": "32fdb8cd-08e8-4c44-987a-ca62df2e0b88",
+      "companion_id": "5c166674-b648-43e5-ae71-9f091c6b1651",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-19T11:34:22.397Z"
+    },
+    {
+      "id": "a756abe9-d253-4b8d-9448-350af5b51c98",
+      "companion_id": "5c166674-b648-43e5-ae71-9f091c6b1651",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-19T11:33:00.217Z"
+    },
+    {
+      "id": "c36aa08c-e311-4889-9b15-20f8e91bf5f4",
+      "companion_id": "seed-history-1",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-19T11:23:15.980Z"
+    },
+    {
+      "id": "c264bbad-71a5-4c19-a372-a60446bdc065",
+      "companion_id": "5c166674-b648-43e5-ae71-9f091c6b1651",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-19T11:21:30.027Z"
+    },
+    {
+      "id": "ba165225-ba92-4a6e-a492-90c06f7fd68f",
+      "companion_id": "seed-coding-1",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-19T11:03:11.885Z"
+    },
+    {
+      "id": "0a5b12f9-c41e-44e9-b4fe-82b5904eb0b8",
+      "companion_id": "seed-economics-1",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-08T06:48:49.676Z"
+    },
+    {
+      "id": "d7911eec-2a90-4420-8d95-ce2eb91baec0",
+      "companion_id": "seed-coding-1",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-08T06:45:42.934Z"
+    },
+    {
+      "id": "22ee8e0d-871e-4f6a-a18b-bbce464881f2",
+      "companion_id": "seed-coding-1",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-08T06:43:45.807Z"
+    },
+    {
+      "id": "28096e66-c646-4c4f-b8b0-69147b2b15c4",
+      "companion_id": "seed-coding-1",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-08T06:14:57.035Z"
+    },
+    {
+      "id": "05c044c7-3768-4d64-ba8d-77bfd2a61643",
+      "companion_id": "seed-coding-1",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-08T05:35:07.646Z"
+    }
+  ],
+  "bookmarks": [
+    {
+      "id": "37c1cf25-f7f2-4315-95b8-18765b3178ad",
+      "companion_id": "seed-science-1",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-19T11:41:40.095Z"
+    }
+  ]
+}

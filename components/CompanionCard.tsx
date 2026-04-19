@@ -4,6 +4,13 @@ import { addBookmark } from "@/lib/actions/companion.actions";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useAuth } from "@clerk/nextjs";
+import { isLocalStorageMode } from "@/lib/data-mode";
+import {
+  addBrowserBookmark,
+  removeBrowserBookmark,
+} from "@/lib/browser-local-db";
 
 interface CompanionCardProps {
   id: string;
@@ -15,6 +22,15 @@ interface CompanionCardProps {
   bookmarked: boolean;
 }
 
+const cardColorClassByHex: Record<string, string> = {
+  "#E5D0FF": "bg-[#E5D0FF]",
+  "#FFDA6E": "bg-[#FFDA6E]",
+  "#BDE7FF": "bg-[#BDE7FF]",
+  "#FFC8E4": "bg-[#FFC8E4]",
+  "#FFECC8": "bg-[#FFECC8]",
+  "#C8FFDF": "bg-[#C8FFDF]",
+};
+
 const CompanionCard = ({
   id,
   name,
@@ -25,22 +41,47 @@ const CompanionCard = ({
   bookmarked,
 }: CompanionCardProps) => {
   const pathname = usePathname();
+  const cardColorClass = cardColorClassByHex[color] ?? "bg-card";
+  const { userId } = useAuth();
+  const [isBookmarked, setIsBookmarked] = useState(bookmarked);
+
+  useEffect(() => {
+    setIsBookmarked(bookmarked);
+  }, [bookmarked]);
+
   const handleBookmark = async () => {
-    if (bookmarked) {
+    if (isLocalStorageMode) {
+      if (!userId) return;
+
+      if (isBookmarked) {
+        removeBrowserBookmark(id, userId);
+        setIsBookmarked(false);
+      } else {
+        addBrowserBookmark(id, userId);
+        setIsBookmarked(true);
+      }
+
+      return;
+    }
+
+    if (isBookmarked) {
       await removeBookmark(id, pathname);
     } else {
       await addBookmark(id, pathname);
     }
   };
   return (
-    <article className="companion-card" style={{ backgroundColor: color }}>
+    <article className={`companion-card text-black ${cardColorClass}`}>
       <div className="flex justify-between items-center">
         <div className="subject-badge">{subject}</div>
-        <button className="companion-bookmark" onClick={handleBookmark}>
+        <button
+          className="companion-bookmark"
+          onClick={handleBookmark}
+          aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
+          title={isBookmarked ? "Remove bookmark" : "Add bookmark"}
+        >
           <Image
-            src={
-              bookmarked ? "/icons/bookmark-filled.svg" : "/icons/bookmark.svg"
-            }
+            src={isBookmarked ? "/icons/bookmark-filled.svg" : "/icons/bookmark.svg"}
             alt="bookmark"
             width={12.5}
             height={15}

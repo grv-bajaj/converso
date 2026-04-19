@@ -13,18 +13,60 @@ import {
 } from "@/lib/actions/companion.actions";
 import Image from "next/image";
 import CompanionsList from "@/components/CompanionsList";
+import { isLocalStorageMode } from "@/lib/data-mode";
+import MyJourneyLocalMode from "@/components/local/MyJourneyLocalMode";
 
 const Profile = async () => {
   const user = await currentUser();
 
   if (!user) redirect("/sign-in");
 
-  const companions = await getUserCompanions(user.id);
-  const sessionHistory = await getUserSessions(user.id);
-  const bookmarkedCompanions = await getBookmarkedCompanions(user.id);
+  if (isLocalStorageMode) {
+    return (
+      <MyJourneyLocalMode
+        user={{
+          id: user.id,
+          firstName: user.firstName ?? "Student",
+          lastName: user.lastName ?? "",
+          imageUrl: user.imageUrl,
+          emailAddress: user.emailAddresses[0]?.emailAddress ?? "",
+        }}
+      />
+    );
+  }
+
+  const [companionsResult, sessionHistoryResult, bookmarkedCompanionsResult] =
+    await Promise.allSettled([
+      getUserCompanions(user.id),
+      getUserSessions(user.id),
+      getBookmarkedCompanions(user.id),
+    ]);
+
+  const companions =
+    companionsResult.status === "fulfilled" ? companionsResult.value : [];
+  const sessionHistory =
+    sessionHistoryResult.status === "fulfilled"
+      ? sessionHistoryResult.value
+      : [];
+  const bookmarkedCompanions =
+    bookmarkedCompanionsResult.status === "fulfilled"
+      ? bookmarkedCompanionsResult.value
+      : [];
+  const hasSupabaseError =
+    companionsResult.status === "rejected" ||
+    sessionHistoryResult.status === "rejected" ||
+    bookmarkedCompanionsResult.status === "rejected";
 
   return (
     <main className="min-lg:w-3/4">
+      {hasSupabaseError && (
+        <section className="mb-6 rounded-xl border border-amber-400/30 bg-amber-50 p-4 text-sm text-amber-900">
+          The Supabase backend is currently unavailable or misconfigured, so
+          your journey data could not load. Check that the project is active and
+          that the Supabase environment variables are correct.
+        </section>
+      )}
+
       <section className="flex justify-between gap-4 max-sm:flex-col items-center">
         <div className="flex gap-4 items-center">
           <Image

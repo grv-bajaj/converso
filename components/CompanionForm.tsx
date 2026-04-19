@@ -3,6 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useState } from "react"
+import { useAuth } from "@clerk/nextjs"
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -24,7 +26,9 @@ import {
 import {subjects} from "@/constants";
 import {Textarea} from "@/components/ui/textarea";
 import {createCompanion} from "@/lib/actions/companion.actions";
-import {redirect} from "next/navigation";
+import { useRouter } from "next/navigation";
+import { isLocalStorageMode } from "@/lib/data-mode";
+import { createBrowserCompanion } from "@/lib/browser-local-db";
 
 const formSchema = z.object({
     name: z.string().min(1, { message: 'Companion is required.'}),
@@ -36,6 +40,11 @@ const formSchema = z.object({
 })
 
 const CompanionForm = () => {
+    const router = useRouter();
+    const { userId } = useAuth();
+    const [error, setError] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -49,13 +58,34 @@ const CompanionForm = () => {
     })
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        const companion = await createCompanion(values);
+        setError(null);
+        setIsSubmitting(true);
 
-        if(companion) {
-            redirect(`/companions/${companion.id}`);
-        } else {
-            console.log('Failed to create a companion');
-            redirect('/');
+        try {
+            const companion = isLocalStorageMode
+                ? createBrowserCompanion(values, userId ?? "local-user", userId ?? undefined)
+                : await createCompanion(values);
+
+            if(companion) {
+                router.push(`/companions/${companion.id}`);
+                router.refresh();
+            } else {
+                setError('Failed to create a companion. Please try again.');
+            }
+        } catch (err: any) {
+            console.error('Companion creation error:', err);
+            const message = err?.message || 'Unknown error';
+
+            if (message.includes('fetch') || message.includes('network') || message.includes('ECONNREFUSED') || message.includes('SSL') || message.includes('certificate')) {
+                setError(`Network error — this is likely caused by FortiClient or another VPN/firewall blocking the connection to Supabase. Try fully quitting FortiClient (not just disconnecting) and restarting your dev server. Error: ${message}`);
+            } else if (message.includes('NEXT_REDIRECT')) {
+                // This is Next.js redirect, not a real error — rethrow it
+                throw err;
+            } else {
+                setError(`Error creating companion: ${message}`);
+            }
+        } finally {
+            setIsSubmitting(false);
         }
     }
 
@@ -210,7 +240,14 @@ const CompanionForm = () => {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" className="w-full cursor-pointer">Build Your Companion</Button>
+                {error && (
+                    <div className="bg-red-500/10 border border-red-500/50 text-red-500 p-4 rounded-lg text-sm">
+                        {error}
+                    </div>
+                )}
+                <Button type="submit" className="w-full cursor-pointer" disabled={isSubmitting}>
+                    {isSubmitting ? 'Creating...' : 'Build Your Companion'}
+                </Button>
             </form>
         </Form>
     )
