@@ -1,6 +1,18 @@
 {
   "companions": [
     {
+      "id": "9f38ffeb-4918-486a-b9ee-1c00250f7b67",
+      "name": "Kitty",
+      "subject": "coding",
+      "topic": "DevOps and Github Actions",
+      "duration": 15,
+      "voice": "male",
+      "style": "casual",
+      "author": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "bookmarked": false,
+      "created_at": "2026-04-19T12:33:01.292Z"
+    },
+    {
       "id": "5c166674-b648-43e5-ae71-9f091c6b1651",
       "name": "Ansh",
       "subject": "coding",
