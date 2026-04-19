@@ -87,6 +87,12 @@
   ],
   "session_history": [
     {
+      "id": "162fcfb1-2af6-479c-96b0-8eb00006f65d",
+      "companion_id": "seed-science-1",
+      "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",
+      "created_at": "2026-04-19T12:01:37.500Z"
+    },
+    {
       "id": "3d34d799-465c-4793-9d1f-ff5725b7ca48",
       "companion_id": "seed-coding-1",
       "user_id": "user_3ADmOXdjvxE8q981ppAiPtQhI50",

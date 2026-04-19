@@ -14,9 +14,9 @@ import { getSubjectColor } from "@/lib/utils";
 const HomeLocalMode = () => {
   const { userId } = useAuth();
   const [companions, setCompanions] = useState<any[]>([]);
-  const [recentSessionsCompanions, setRecentSessionsCompanions] = useState<any[]>(
-    [],
-  );
+  const [recentSessionsCompanions, setRecentSessionsCompanions] = useState<
+    any[]
+  >([]);
 
   useEffect(() => {
     setCompanions(getBrowserAllCompanions({ limit: 3 }, userId ?? undefined));

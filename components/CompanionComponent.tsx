@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { cn, configureAssistant, getSubjectColor } from "@/lib/utils";
+import { cn, configureAssistant, getSubjectBgClass } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import Image from "next/image";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
@@ -33,6 +33,7 @@ const CompanionComponent = ({
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [messages, setMessages] = useState<SavedMessage[]>([]);
+  const subjectBgClass = getSubjectBgClass(subject);
 
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
@@ -119,10 +120,7 @@ const CompanionComponent = ({
     <section className="flex flex-col h-[70vh]">
       <section className="flex gap-8 max-sm:flex-col">
         <div className="companion-section">
-          <div
-            className="companion-avatar"
-            style={{ backgroundColor: getSubjectColor(subject) }}
-          >
+          <div className={`companion-avatar ${subjectBgClass}`}>
             <div
               className={cn(
                 "absolute transition-opacity duration-1000",

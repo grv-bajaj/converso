@@ -1,7 +1,7 @@
 import { getCompanion } from "@/lib/actions/companion.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { getSubjectColor } from "@/lib/utils";
+import { getSubjectBgClass } from "@/lib/utils";
 import Image from "next/image";
 import CompanionComponent from "@/components/CompanionComponent";
 import { isLocalStorageMode } from "@/lib/data-mode";
@@ -35,14 +35,14 @@ const CompanionSession = async ({ params }: CompanionSessionPageProps) => {
   if (!companion?.name) redirect("/companions");
 
   const { name, subject, topic, duration } = companion;
+  const subjectBgClass = getSubjectBgClass(subject);
 
   return (
     <main>
       <article className="flex rounded-border dark:border-white justify-between p-6 max-md:flex-col">
         <div className="flex items-center gap-2">
           <div
-            className="size-[72px] flex items-center justify-center rounded-lg max-md:hidden"
-            style={{ backgroundColor: getSubjectColor(subject) }}
+            className={`size-[72px] flex items-center justify-center rounded-lg max-md:hidden ${subjectBgClass}`}
           >
             <Image
               src={`/icons/${subject}.svg`}

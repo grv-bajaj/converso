@@ -40,7 +40,12 @@ const MyJourneyLocalMode = ({ user }: MyJourneyLocalModeProps) => {
     <main className="min-lg:w-3/4">
       <section className="flex justify-between gap-4 max-sm:flex-col items-center">
         <div className="flex gap-4 items-center">
-          <Image src={user.imageUrl} alt={user.firstName} width={110} height={110} />
+          <Image
+            src={user.imageUrl}
+            alt={user.firstName}
+            width={110}
+            height={110}
+          />
           <div className="flex flex-col gap-2">
             <h1 className="font-bold text-2xl">
               {user.firstName} {user.lastName}
@@ -51,7 +56,12 @@ const MyJourneyLocalMode = ({ user }: MyJourneyLocalModeProps) => {
         <div className="flex gap-4">
           <div className="border border-black rouded-lg p-3 gap-2 flex flex-col h-fit dark:border-white">
             <div className="flex gap-2 items-center">
-              <Image src="/icons/check.svg" alt="checkmark" width={22} height={22} />
+              <Image
+                src="/icons/check.svg"
+                alt="checkmark"
+                width={22}
+                height={22}
+              />
               <p className="text-2xl font-bold">{sessionHistory.length}</p>
             </div>
             <div>Lessons completed</div>

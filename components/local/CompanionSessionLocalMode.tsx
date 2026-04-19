@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import CompanionComponent from "@/components/CompanionComponent";
-import { getSubjectColor } from "@/lib/utils";
+import { getSubjectBgClass } from "@/lib/utils";
 import { getBrowserCompanion } from "@/lib/browser-local-db";
 
 type CompanionSessionLocalModeProps = {
@@ -48,13 +48,14 @@ const CompanionSessionLocalMode = ({
     );
   }
 
+  const subjectBgClass = getSubjectBgClass(companion.subject);
+
   return (
     <main>
       <article className="flex rounded-border dark:border-white justify-between p-6 max-md:flex-col">
         <div className="flex items-center gap-2">
           <div
-            className="size-[72px] flex items-center justify-center rounded-lg max-md:hidden"
-            style={{ backgroundColor: getSubjectColor(companion.subject) }}
+            className={`size-[72px] flex items-center justify-center rounded-lg max-md:hidden ${subjectBgClass}`}
           >
             <Image
               src={`/icons/${companion.subject}.svg`}
@@ -67,7 +68,9 @@ const CompanionSessionLocalMode = ({
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <p className="font-bold text-2xl">{companion.name}</p>
-              <div className="subject-badge max-sm:hidden">{companion.subject}</div>
+              <div className="subject-badge max-sm:hidden">
+                {companion.subject}
+              </div>
             </div>
             <p className="text-lg">{companion.topic}</p>
           </div>

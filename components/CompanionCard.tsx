@@ -81,7 +81,11 @@ const CompanionCard = ({
           title={isBookmarked ? "Remove bookmark" : "Add bookmark"}
         >
           <Image
-            src={isBookmarked ? "/icons/bookmark-filled.svg" : "/icons/bookmark.svg"}
+            src={
+              isBookmarked
+                ? "/icons/bookmark-filled.svg"
+                : "/icons/bookmark.svg"
+            }
             alt="bookmark"
             width={12.5}
             height={15}

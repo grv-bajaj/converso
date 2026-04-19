@@ -176,7 +176,10 @@ const getCompanionBookmarks = (state: BrowserDbState, userId?: string) => {
   );
 };
 
-const hydrateCompanion = (companion: BrowserCompanion, bookmarked: boolean) => ({
+const hydrateCompanion = (
+  companion: BrowserCompanion,
+  bookmarked: boolean,
+) => ({
   ...companion,
   bookmarked,
 });
@@ -250,7 +253,10 @@ export const getBrowserCompanion = (id: string, userId?: string) => {
   );
 };
 
-export const addBrowserSessionHistory = (companionId: string, userId: string) => {
+export const addBrowserSessionHistory = (
+  companionId: string,
+  userId: string,
+) => {
   const state = loadBrowserDb();
 
   const entry: BrowserSessionHistory = {
